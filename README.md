@@ -1,68 +1,38 @@
-# Examen Práctico de JavaScript — Biblioteca Comunitaria 📚
+# 📘 Mi Cheatsheet de JavaScript — Programación II
 
-## Contexto
+Esto es todo lo que fui aprendiendo resolviendo los parciales prácticos con la plantilla de Familia A y Familia B. Está armado en mi propio lenguaje, como lo fui entendiendo yo, no como un manual técnico.
 
-Una biblioteca comunitaria quiere una web para que los vecinos consulten el catálogo de libros disponibles y soliciten préstamos. Tenés que completar el archivo `js/script.js` (el HTML y el CSS ya están armados) siguiendo las 5 entregas de abajo.
+La idea es que cuando me trabe en un examen nuevo, entre acá, busque el error o la duda que tengo, y encuentre la solución explicada como ya la entendí una vez.
 
-## Cómo levantar el proyecto
+## Qué hay en este repo
 
-```
-npm install
-npm start          # levanta el server en http://localhost:3000
-```
+- **`como-uso-la-plantilla.md`** → el método paso a paso, cómo identifico la familia, de dónde saco cada dato, cómo reemplazo cada placeholder
+- **`errores-que-me-comi.md`** → todos los bugs reales que cometí en los 5 parciales, con el error tal cual aparece en la consola, por qué pasa, y cómo lo arreglo
+- **`plantillas/`** → mis dos plantillas (Familia A y Familia B), actualizadas con todo lo que aprendí
+- **Una carpeta por cada examen que resolví** → con el código final y las cosas puntuales de ESE examen (Mascotas, GameHub, Biblioteca, Cafetería, Eventos)
 
-Abrí `index.html` con Live Server (no lo abras con doble click, falla el fetch por CORS).
+## Las dos familias, resumido
 
-## Endpoints del backend
+**¿Muchas tarjetas juntas en pantalla, o una sola que va cambiando?**
 
-| Método | Endpoint | Devuelve |
+- Muchas juntas → **Familia A**: catálogo + filtro + modal + formulario/favorito + localStorage. Ejemplos: Cafetería, Eventos, Mascotas, GameHub, Biblioteca.
+- Una sola que cambia con un botón "Siguiente" + hay puntaje → **Familia B**: quiz/adivinanza. Ejemplos: Trivia, Dragon Ball, Pokémon.
+
+## Los 5 commits de Familia A (esto siempre es igual)
+
+| Commit | Qué es | Pasos de mi plantilla |
 |---|---|---|
-| GET | `/api/libros` | Array con todos los libros del catálogo |
-| GET | `/api/generos` | Array de géneros disponibles (`{ id, nombre }`) |
-| GET | `/api/libros/:id` | Un libro puntual por su ID numérico, con todos sus datos |
+| 1 | Vincular el CSS y el JS al HTML | — |
+| 2 | Consumir la API con fetch | Pasos 1 a 4 |
+| 3 | Renderizar tarjetas y selects | Pasos 5 a 7 |
+| 4 | Filtro + modal (+ orden si el examen lo pide) | Pasos 8, 9, 10 (11 si hay cálculo) |
+| 5 | Guardar en localStorage (form o favorito) | Pasos 12 a 16 |
 
-## Estructura de un libro (server/data/libros.json)
+**Ojo:** los commits 1, 2 y 3 siempre se agrupan igual. Los commits 4 y 5 pueden variar según lo que pida el README de cada examen puntual — siempre hay que confirmarlo ahí, no asumir.
 
-```json
-{
-  "id": 1,
-  "titulo": "Cien Años de Soledad",
-  "autor": "Gabriel García Márquez",
-  "genero": "novela",
-  "año": 1967,
-  "paginas": 471,
-  "copiasDisponibles": 3,
-  "imagen": "...",
-  "sinopsis": "...",
-  "estanteria": "A-12"
-}
-```
+## La regla de oro de todo esto
 
-## Elementos clave del DOM (ya están en el `index.html`)
-
-- `#filtroGenero` — select de filtro por género
-- `#catalogoGrid` — contenedor donde van las tarjetas de libros
-- `#modalDetalle` / `#detalleContent` — modal con la ficha del libro
-- `#formPrestamo`, `#inputNombreSolicitante`, `#inputDni`, `#btnConfirmarPrestamo`
-- `#prestamosLista`, `#btnLimpiarPrestamos`
-
-## Tabla de Entregas
-
-| # | Commit sugerido | Tarea a realizar |
-|---|---|---|
-| 1 | `feat(html): vincular css y script js al html` | Vincular `css/styles.css` y `js/script.js` en el `index.html` |
-| 2 | `feat(js): consumir api de libros con fetch y async await` | Traer `libros` y `generos` del backend con `fetch`/`async-await`, con `try/catch` |
-| 3 | `feat(js): renderizar tarjetas de libros y filtros en el dom` | Pintar las tarjetas en `#catalogoGrid` y poblar `#filtroGenero` |
-| 4 | `feat(js): implementar filtrado y ficha de prestamo` | Al cambiar `#filtroGenero`, filtrar las tarjetas mostradas. Al hacer click en una tarjeta, abrir el modal con la ficha completa del libro |
-| 5 | `feat(js): persistir y gestionar prestamos en localstorage` | Al enviar `#formPrestamo`, guardar la solicitud en `localStorage` y listarla en `#prestamosLista` |
-
-## Almacenamiento Local
-
-- Clave: `biblioteca_prestamos`
-- Estructura: Arreglo de objetos con `{ id, tituloLibro, genero, solicitante, dni, fecha }`
-
-## Notas
-
-- No hay input de búsqueda de texto en este examen — solo el filtro por género.
-- No hay cálculo de cantidad/precio — es préstamo, no compra.
-- El botón "Limpiar Historial" vacía todos los préstamos guardados.
+**Nunca confío de memoria. Siempre confirmo contra la fuente real:**
+- Los `id` del HTML → los saco de mi `aa.md`
+- Los nombres de los campos → los saco del JSON real o probando la URL del endpoint en el navegador
+- Qué campos van en el objeto que guardo en localStorage → los saco de la sección "Almacenamiento Local" del README
