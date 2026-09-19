@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cafetería de Especialidad - Examen de JavaScript</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="cafeteria-container">
+      <header>
+        <h1>☕ Origen &amp; Grano</h1>
+        <p class="subtitle">
+          Cafetería de especialidad, métodos de filtrado y pastelería artesanal
+        </p>
+      </header>
+
+      <section class="filters">
+        <select id="filtroCategoria" class="filter-select">
+          <option value="">Todas las categorías</option>
+        </select>
+        <input
+          type="text"
+          id="inputBusqueda"
+          class="search-input"
+          placeholder="Buscar por nombre o notas de cata..."
+        />
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- 📋 PLANTILLA PARA COPIAR Y PEGAR EN JS (Renderizado de tarjetas en Grid): -->
+      <!--
+        <div class="producto-card">
+          <div class="card-image-wrap">
+            <img src="${producto.imagen}" alt="${producto.nombre}" class="card-image" />
+            <span class="card-cat-badge ${badgeClass}">${producto.categoriaNombre}</span>
+            <span class="card-price-badge">$${producto.precioBase}</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">${producto.nombre}</h3>
+            ${producto.origenGrano ? `<p class="card-origin"><i class="fas fa-seedling"></i> ${producto.origenGrano}</p>` : ''}
+            <p class="card-description">${producto.descripcion}</p>
+            <div class="card-tags">
+              ${producto.notasCata.map((nota) => `<span class="tag">${nota}</span>`).join('')}
+            </div>
+            <button type="button" class="btn-primary btn-ordenar" data-id="${producto.id}">
+              <i class="fas fa-coffee"></i> Ordenar Producto
+            </button>
+          </div>
+        </div>
+      -->
+      <!-- ========================================================================= -->
+
+      <section class="catalog">
+        <div id="catalogoGrid" class="cards-grid"></div>
+      </section>
+
+      <!-- Modal Personalizar y Armar Pedido -->
+      <div id="modalDetalle" class="modal hidden">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>☕ Registrar Comanda</h3>
+            <button type="button" class="cerrar-modal">&times;</button>
+          </div>
+
+          <!-- ======================================================================= -->
+          <!-- 📋 PLANTILLA PARA COPIAR Y PEGAR EN JS (Detalle del producto en modal): -->
+          <!--
+            <div class="detail-header-info">
+              <img src="${producto.imagen}" alt="${producto.nombre}" class="detail-img" />
+              <div>
+                <h4>${producto.nombre}</h4>
+                <div class="detail-meta-grid">
+                  <div class="detail-meta-item"><strong>Categoría:</strong> ${producto.categoriaNombre}</div>
+                  <div class="detail-meta-item"><strong>Precio unitario:</strong> $${producto.precioBase}</div>
+                  ${producto.origenGrano ? `<div class="detail-meta-item"><strong>Origen:</strong> ${producto.origenGrano}</div>` : ''}
+                  ${producto.tiempoPreparacionMin ? `<div class="detail-meta-item"><strong>Demora:</strong> ${producto.tiempoPreparacionMin} min</div>` : ''}
+                </div>
+              </div>
+            </div>
+          -->
+          <!-- ======================================================================= -->
+
+          <div id="detalleContent" class="detail-body"></div>
+
+          <form id="formPedido" class="order-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="cantidadProducto">Cantidad de Unidades</label>
+                <input
+                  type="number"
+                  id="cantidadProducto"
+                  name="cantidad"
+                  min="1"
+                  max="10"
+                  value="1"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="inputCliente">Nombre del Cliente</label>
+                <input
+                  type="text"
+                  id="inputCliente"
+                  name="cliente"
+                  required
+                  placeholder="Ej: Marcos Pérez"
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputNotas">Notas Especiales (Opcional)</label>
+              <input
+                type="text"
+                id="inputNotas"
+                name="notas"
+                placeholder="Ej: Con leche vegetal, sin azúcar"
+              />
+            </div>
+
+            <div class="total-bar">
+              <span>Total a Pagar:</span>
+              <strong id="precioTotalCalculado">$0</strong>
+            </div>
+
+            <button type="submit" id="btnConfirmarPedido" class="btn-primary">
+              <i class="fas fa-check-circle"></i> Confirmar Comanda
+            </button>
+          </form>
+          <button type="button" class="btn-cerrar cerrar-modal">Cerrar</button>
+        </div>
+      </div>
+
+      <!-- Sección Historial de Comandas -->
+      <section class="pedidos-section">
+        <div class="pedidos-header">
+          <h2><i class="fas fa-receipt"></i> Comandas Registradas</h2>
+          <button type="button" id="btnLimpiarPedidos" class="btn-outline">
+            <i class="fas fa-trash"></i> Limpiar Historial
+          </button>
+        </div>
+
+        <!-- ======================================================================= -->
+        <!-- 📋 PLANTILLA PARA COPIAR Y PEGAR EN JS (Item de comanda guardada):     -->
+        <!--
+          <div class="pedido-card">
+            <div class="pedido-info">
+              <h4>☕ #${p.id} - ${p.productoNombre} &bull; <strong>Cliente:</strong> ${p.cliente}</h4>
+              <p>${p.cantidad} unidad(es) &bull; ${p.fecha}</p>
+              ${p.notas ? `<p class="pedido-notas"><em>Notas: "${p.notas}"</em></p>` : ''}
+            </div>
+            <div class="pedido-total">$${p.total}</div>
+          </div>
+        -->
+        <!-- ======================================================================= -->
+
+        <div id="pedidosLista" class="pedidos-list"></div>
+      </section>
+    </div>
+
+    <script type="module" src="./js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eventos - Examen de JavaScript</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="eventos-container">
+      <header>
+        <h1>🎵 Eventos</h1>
+        <p class="subtitle">Descubrí los mejores shows y conseguí tus entradas</p>
+      </header>
+
+      <section class="filters">
+        <select id="filtroGenero" class="filter-select">
+          <option value="">Todos los géneros</option>
+        </select>
+        <input
+          type="text"
+          id="inputBusqueda"
+          class="search-input"
+          placeholder="Buscar por artista o evento..."
+        />
+      </section>
+
+      <section class="catalog">
+        <div id="eventosGrid" class="events-grid"></div>
+      </section>
+
+      <!-- Modal Compra -->
+      <div id="modalCompra" class="modal hidden">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>🎟️ Comprar Entradas</h3>
+            <button type="button" class="cerrar-modal">&times;</button>
+          </div>
+          <div id="compraContent" class="purchase-body"></div>
+          <form id="formCompra" class="purchase-form">
+            <div class="form-group">
+              <label for="cantidadEntradas">Cantidad de entradas</label>
+              <input type="number" id="cantidadEntradas" min="1" max="10" value="1" required />
+            </div>
+            <div class="total-section">
+              <span>Total a pagar:</span>
+              <strong id="totalPagar">$0.00</strong>
+            </div>
+            <button type="submit" id="btnConfirmar" class="btn-primary">
+              <i class="fas fa-ticket-alt"></i> Confirmar Compra
+            </button>
+          </form>
+          <button type="button" class="btn-cerrar cerrar-modal">Cancelar</button>
+        </div>
+      </div>
+
+      <!-- Sección Historial de Compras -->
+      <section class="history-section">
+        <div class="history-header">
+          <h2><i class="fas fa-receipt"></i> Mis Compras</h2>
+          <button type="button" id="btnLimpiarHistorial" class="btn-outline">
+            <i class="fas fa-trash"></i> Limpiar
+          </button>
+        </div>
+        <ul id="historialLista" class="history-list"></ul>
+      </section>
+    </div>
+
+    <script type="module" src="./js/script.js"></script>
+  </body>
+</html>

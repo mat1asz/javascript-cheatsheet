@@ -1,0 +1,10 @@
+filtroEspecie
+catalogoGrid
+modalDetalle
+detalleContent
+formAdopcion
+inputNombreAdoptante
+inputTelefono
+btnConfirmarAdopcion
+btnLimpiarSolicitudes
+solicitudesLista

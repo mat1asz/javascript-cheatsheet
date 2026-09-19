@@ -1,0 +1,6 @@
+[
+  { "id": "novela", "nombre": "Novela" },
+  { "id": "ciencia-ficcion", "nombre": "Ciencia Ficción" },
+  { "id": "fantasia", "nombre": "Fantasía" },
+  { "id": "ensayo", "nombre": "Ensayo" }
+]

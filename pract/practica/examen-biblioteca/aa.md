@@ -1,0 +1,10 @@
+filtroGenero
+catalogoGrid
+modalDetalle
+detalleContent
+formPrestamo
+inputNombreSolicitante
+inputDni
+btnConfirmarPrestamo
+btnLimpiarPrestamos
+prestamosLista

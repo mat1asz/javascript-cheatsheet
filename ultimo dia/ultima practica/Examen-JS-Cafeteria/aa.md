@@ -1,0 +1,13 @@
+filtroCategoria
+inputBusqueda
+catalogoGrid
+modalDetalle
+detalleContent
+formPedido
+cantidadProducto
+inputCliente
+inputNotas
+precioTotalCalculado
+btnConfirmarPedido
+btnLimpiarPedidos
+pedidosLista

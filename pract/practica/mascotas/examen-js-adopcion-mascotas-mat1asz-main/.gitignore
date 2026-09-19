@@ -1,0 +1,11 @@
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+dist/
+build/
+readme.md
+README.md
+.github/workflows/classroom.yml
+scripts/classroom-check.sh

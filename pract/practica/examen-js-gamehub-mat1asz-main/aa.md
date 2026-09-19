@@ -1,0 +1,7 @@
+filtroPlataforma
+ordenarCalificacion
+catalogoGrid
+modalDetalle
+detalleContent
+btnLimpiarFavoritos
+favoritosLista

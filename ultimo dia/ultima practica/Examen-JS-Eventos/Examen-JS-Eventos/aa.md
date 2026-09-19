@@ -1,0 +1,11 @@
+filtroGenero
+inputBusqueda
+eventosGrid
+modalCompra
+compraContent
+formCompra
+cantidadEntradas
+totalPagar
+btnConfirmar
+btnLimpiarHistorial
+historialLista
